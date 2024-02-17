@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import { useJsApiLoader } from '@react-google-maps/api';
+
+//Added from video
+const {isLoaded} = useJsApiLoader({
+  googleMapsApiKey: 'AIzaSyCgc07q6Q-wgiE04hQ76jWp7E_V5tL_0Ik'
+})
+
+
 
 // Define your Google Maps API key
-const googleMapsApiKey = 'YOUR_API_KEY';
+const googleMapsApiKey = 'AIzaSyCgc07q6Q-wgiE04hQ76jWp7E_V5tL_0Ik'
 
 const Map = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
