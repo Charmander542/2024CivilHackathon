@@ -2,5 +2,5 @@
 The Hackathon for the thing
 
 
-npm install
-npm run dev
+* npm install
+* npm run dev

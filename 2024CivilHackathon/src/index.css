@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+  
+  html {
+    scroll-behavior: smooth;
+    -ms-overflow-style: scrollbar;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  
+    @media (min-width: 320px) {
+      font-size: 14px;
+    }
+    @media (min-width: 768px) {
+      font-size: 15px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
+    @media (min-width: 1536px) {
+      font-size: 18px;
+    }
+    @media (min-width: 1800px) {
+      font-size: 20px;
+    }
+    @media (min-width: 2000px) {
+      font-size: 22px;
+    }
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: yellow;
+    opacity: 1;
+    border-radius: 1rem;
+    transition: all 0.2s;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: darkgoldenrod;
+    opacity: 1;
+  }
+  
+  ::-moz-selection {
+    background-color: theme("colors.yellow");
+    color: #fff;
+  }
+  
+  ::selection {
+    background-color: rgba(112, 0, 255, 1);
+    color: #fff;
+  }
+  
+  .section-container {
+    @apply 2xl:container xl:px-20 md:px-12 px-4 mx-auto;
+  }
+  
