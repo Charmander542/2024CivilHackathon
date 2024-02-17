@@ -9,15 +9,19 @@ public class Ride {
   private String riderName;
   private String car;
   private String plate;
-  private String destination;
-  private List<Person> riders = new ArrayList<Person>();
+  private Location destination;
+  private Location pickUp;
+  private List<Person> riders = new ArrayList<>();
 
-  public Ride(double price, String riderName, String car, String plate, int maxSeats, String destination) {
+  public Ride(double price, String riderName, String car, String plate, int maxSeats,
+              Location destination, Location pickUp) {
     this.price = price;
     this.riderName = riderName;
     this.car = car;
     this.plate = plate;
     this.maxSeats = maxSeats;
+    this.destination = destination;
+    this.pickUp = pickUp;
   }
   public int getNumRiders() {
     return riders.size();
@@ -54,8 +58,11 @@ public class Ride {
     return plate;
   }
 
-  public String getDestination() {
-    return destination;
+  public double getDestLongitude() {
+    return destination.getLongitude();
+  }
+  public double getPickUpLatitude() {
+    return destination.getLatitude();
   }
 
 }
