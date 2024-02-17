@@ -7,7 +7,7 @@ import {
 } from "@vis.gl/react-google-maps"
 
 // Define your Google Maps API key
-const googleMapsApiKey = 'AIzaSyCgc07q6Q-wgiE04hQ76jWp7E_V5tL_0Ik'
+const googleMapsApiKey = 'YOUR_API_KEY';
 
 export default function Map(){
   const [currentLocation, setCurrentLocation] = useState(null);
