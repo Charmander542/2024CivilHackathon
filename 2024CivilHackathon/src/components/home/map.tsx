@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-    APIProvider,
-    Map,
-    useMapsLibrary,
-    useMap,
-} from "@vis.gl/react-google-maps"
+import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 
 // Define your Google Maps API key
-const googleMapsApiKey = 'YOUR_API_KEY';
 
-export default function Map(){
+export default function StreetMap(){
   const [currentLocation, setCurrentLocation] = useState(null);
 
   useEffect(() => {
@@ -30,19 +24,13 @@ export default function Map(){
       console.error('Geolocation is not supported by this browser.');
     }
   }, []);
+  const position = {lat: 53.54992, lng: 10.00678};
 
   return (
-    <div className="w-full h-10">
-        <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
-            <Map
-                center={currentLocation}
-                zoom={9}
-                mapId={process.env.NEXT_PUBLIC_MAP_ID}
-                fullscreenControl={false}
-            >
-                <Directions />
+        <APIProvider apiKey="AIzaSyCgc07q6Q-wgiE04hQ76jWp7E_V5tL_0Ik">
+            <Map defaultCenter={position} defaultZoom={10}>
+                <Marker position={position} />
             </Map>
         </APIProvider>
-    </div>
   );
 };
