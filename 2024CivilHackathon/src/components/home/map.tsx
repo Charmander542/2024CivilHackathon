@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import {
+    APIProvider,
+    Map,
+    useMapsLibrary,
+    useMap,
+} from "@vis.gl/react-google-maps"
 
 // Define your Google Maps API key
 const googleMapsApiKey = 'YOUR_API_KEY';
 
-const Map = () => {
+export default function Map(){
   const [currentLocation, setCurrentLocation] = useState(null);
 
   useEffect(() => {
@@ -27,22 +32,17 @@ const Map = () => {
   }, []);
 
   return (
-    <LoadScript googleMapsApiKey={googleMapsApiKey}>
-      <GoogleMap
-        mapContainerStyle={{ width: '100%', height: '400px' }}
-        center={currentLocation} // Set the center of the map to currentLocation
-        zoom={10}
-      >
-        {/* Map marker for current location */}
-        {currentLocation && (
-          <Marker
-            position={currentLocation}
-            title="Your Location"
-          />
-        )}
-      </GoogleMap>
-    </LoadScript>
+    <div className="w-full h-10">
+        <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+            <Map
+                center={currentLocation}
+                zoom={9}
+                mapId={process.env.NEXT_PUBLIC_MAP_ID}
+                fullscreenControl={false}
+            >
+                <Directions />
+            </Map>
+        </APIProvider>
+    </div>
   );
 };
-
-export default Map;
