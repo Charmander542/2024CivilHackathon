@@ -27,10 +27,13 @@ export default function StreetMap(){
   const position = {lat: 53.54992, lng: 10.00678};
 
   return (
-        <APIProvider apiKey="AIzaSyCgc07q6Q-wgiE04hQ76jWp7E_V5tL_0Ik">
-            <Map defaultCenter={position} defaultZoom={10}>
-                <Marker position={position} />
-            </Map>
-        </APIProvider>
+    <APIProvider apiKey="AIzaSyCgc07q6Q-wgiE04hQ76jWp7E_V5tL_0Ik">
+    <Map
+      defaultCenter={{lat: 22.54992, lng: 0}}
+      defaultZoom={3}
+      gestureHandling={'greedy'}
+      disableDefaultUI={true}
+    />
+  </APIProvider>
   );
 };
