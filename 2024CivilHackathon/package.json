@@ -20,6 +20,8 @@
     "@vis.gl/react-google-maps": "^0.7.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "dotenv": "^16.4.4",
+    "env": "^0.0.2",
     "lucide-react": "^0.331.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

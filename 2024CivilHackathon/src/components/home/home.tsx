@@ -20,7 +20,7 @@ import {
 } from '@react-google-maps/api'
 import {useEffect, useRef, useState } from 'react'
 
-const center = { lat: 42.349992005840825, lng: -71.10317500508717}
+const center = { lat: 42.349992005840825, lng: -71.10317500508717 }
 
 function Home() {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -55,10 +55,13 @@ function Home() {
   const [duration, setDuration] = useState('')
 
   /** @type React.MutableRefObject<HTMLInputElement> */
-  const originRef = useRef()
+  const originRef = useRef({ lat: 42.349992005840825, lng: -71.10317500508717})
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef()
 
+  if (!isLoaded) {
+    return <div />
+  }
 
   async function calculateRoute() {
     if (originRef.current.value === '' || destiantionRef.current.value === '') {
@@ -90,8 +93,8 @@ function Home() {
       position='relative'
       flexDirection='column'
       alignItems='center'
-      h='80vh'
-      w='full'
+      h='100vh'
+      w='100vw'
     >
       <Box position='absolute' left={0} top={0} h='100%' w='100%'>
         {/* Google Map Box */}
