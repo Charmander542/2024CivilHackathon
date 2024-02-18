@@ -1,0 +1,61 @@
+from fastapi import FastAPI
+import numpy as np
+import random
+import math
+
+app = FastAPI()
+
+def calculate_total_distance(order, distances):
+    total_distance = 0
+    for i in range(len(order) - 1):
+        total_distance += distances[order[i]][order[i+1]]
+    total_distance += distances[order[-1]][order[0]]  # Return to the starting city
+    return total_distance
+
+def acceptance_probability(old_cost, new_cost, temperature):
+    if new_cost < old_cost:
+        return 1.0
+    return math.exp((old_cost - new_cost) / temperature)
+
+def simulated_annealing(distances, initial_temperature=1000, cooling_rate=0.999, num_iterations=1000):
+    num_cities = len(distances)
+    current_order = list(range(num_cities))
+    random.shuffle(current_order)
+    current_cost = calculate_total_distance(current_order, distances)
+
+    best_order = current_order.copy()
+    best_cost = current_cost
+
+    temperature = initial_temperature
+
+    for _ in range(num_iterations):
+        new_order = current_order.copy()
+
+        # Perform a random swap of two cities
+        i, j = random.sample(range(num_cities), 2)
+        new_order[i], new_order[j] = new_order[j], new_order[i]
+
+        new_cost = calculate_total_distance(new_order, distances)
+
+        # Accept or reject the new order based on the acceptance probability
+        if random.uniform(0, 1) < acceptance_probability(current_cost, new_cost, temperature):
+            current_order = new_order
+            current_cost = new_cost
+
+        # Update the best solution if needed
+        if current_cost < best_cost:
+            best_order = current_order.copy()
+            best_cost = current_cost
+
+        # Cool down the temperature
+        temperature *= cooling_rate
+
+    return best_order, best_cost
+
+# FastAPI endpoints
+
+@app.post("/solve_tsp")
+async def solve_tsp(distances: list):
+    distances = np.array(distances)
+    best_order, best_cost = simulated_annealing(distances)
+    return {"best_order": best_order, "best_cost": best_cost}
